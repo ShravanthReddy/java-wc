@@ -1,7 +1,4 @@
-package src;
-
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.HashMap;
 
 public class WcOperations {
@@ -11,7 +8,7 @@ public class WcOperations {
     private int countOfLines;
     private int countOfBytes;
 
-    public WcOperations(BufferedReader br) throws IOException {
+    public WcOperations(BufferedReader br) {
         this.br = br;
     }
 
@@ -35,9 +32,5 @@ public class WcOperations {
 
     public void setCountOfBytes(int countOfBytes) {
         this.countOfBytes = countOfBytes;
-    }
-
-    public String getAll() {
-        return "L:" + countOfLines + " W:" + countOfWords + " B:" + countOfBytes;
     }
 }
