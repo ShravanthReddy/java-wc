@@ -43,7 +43,7 @@ Flags:
   -l,	Outputs the numbers of lines in the file
   -w,	Outputs the numbers of words in the file
   -f	Outputs the frequency of each word in the file
-  -m,	Outputs the most repeated word and it's count
+  -m,	Outputs the most repeated word and its count
 ```
 
 To view help information, type the following command in the terminal:
@@ -55,4 +55,10 @@ By default, java Wc [filename] outputs the number of words, lines, bytes, and ch
 Example: Get the number of words of a file `test.txt`
 ```bash
 java Wc -w test.txt
+```
+
+Example 2: Get the total number of files in a folder
+
+```bash
+ls -l | grep -v '^total' | java Wc -l
 ```
