@@ -8,10 +8,35 @@ public class wc {
     static HashSet<String> filePaths = new HashSet<>();
 
     public static void main(String[] args) {
+        StringBuilder finalOutput = new StringBuilder();
+        boolean isFileProvided = false;
+
         if (args.length > 0 && argsProcessor(args)) {
-            printToConsole("Commands: " + commands);
-            printToConsole("File Paths: " + filePaths);
+            isFileProvided = !filePaths.isEmpty();
         }
+
+        try {
+            InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+            if (inputStreamReader.ready()) {
+                finalOutput.append(standardInput(inputStreamReader)).append("\n");
+            }
+            if (isFileProvided) {
+                for (String filePath: filePaths) {
+                    FileReader fileReader = new FileReader(filePath);
+                    finalOutput.append(fileInput(fileReader)).append(" ").append(filePath).append("\n");
+                }
+            }
+            if (!finalOutput.isEmpty()) {
+                printToConsole(finalOutput.deleteCharAt(finalOutput.length() - 1).toString());
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Wc: File not found");
+
+        } catch (IOException e) {
+            System.out.println("Wc: Unable to read input");
+        }
+
     }
 
     static boolean argsProcessor(String[] args) {
